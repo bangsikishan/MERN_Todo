@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-family: 'Poppins', sans-serif;
+    background: white;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.08);
+}
+
+.navbar h2 {
+    font-size: 2em;
+}
+
+.navbar a {
+    color: #333;
+    text-decoration: none;
+}
+
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.navbar ul li {
+    font-size: 1.1em;
+    padding: 0 20px;
+}

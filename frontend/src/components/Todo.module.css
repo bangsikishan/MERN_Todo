@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 50px;
+    background: #fff;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.04);
+}
+
+.todo h2 {
+    margin-bottom: 30px;
+}
+
+.todo .time {
+    font-size: 0.9em;
+    margin-top: -5px;
+}
+
+.todo .time span {
+    font-weight: 600;
+    color: #555;
+}
