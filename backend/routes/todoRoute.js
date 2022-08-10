@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 // CREATE ROUTES
-router.get('/', todoController.getTodos);
+router.get('/todos', todoController.getTodos);
 router.post('/todo', todoController.createTodos);
 router.delete('/:id', todoController.deleteTodo);
 
