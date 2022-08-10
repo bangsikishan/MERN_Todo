@@ -19,7 +19,7 @@ const createTodos = async (req, res) => {
     const { name, description } = req.body;
 
     try {
-        const todo = await todoModel.create({ name, description });
+        const todo = await todoModel.create((name && description) ? { name, description } : { name });
         res.json({ todo });
     }
     catch(err) {
@@ -39,7 +39,7 @@ const deleteTodo = async (req, res) => {
         const todo = await todoModel.findByIdAndDelete({ _id: id });
 
         if(!todo) {
-            throw new Error('Could not find the todo!');
+            throw new Error('Specified todo doesn\'t exists!');
         }
 
         res.json({ todo });
