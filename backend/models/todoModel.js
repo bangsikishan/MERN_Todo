@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 const todoSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: [true, 'Name cannot be empty!']
     },
     description: {
         type: String
