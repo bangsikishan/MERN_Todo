@@ -1,12 +1,12 @@
 import styles from './Todo.module.css';
 
-const Todo = () => {
+const Todo = ({ todo }) => {
     return (
         <div className={styles.main}>
             <div className={styles.todo}>
-                <h2>Play Valorant</h2>
-                <p>Play valorant(comp) tonight at 10:00 PM</p>
-                <p className={styles.time}><span>Created At: </span>Time</p>
+                <h2>{todo.name}</h2>
+                <p>{todo.description}</p>
+                <p className={styles.time}><span>Created At: </span>{todo.createdAt}</p>
             </div>
             <p>Delete</p>
         </div>
