@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { TodoContext } from '../context/TodoContext';
 
 import styles from './TodoForm.module.css';
 
@@ -6,14 +7,33 @@ const TodoForm = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
-    const submitForm = e => {
+    const { dispatch } = useContext(TodoContext);
+
+    const submitForm = async e => {
         e.preventDefault();
 
         const errorDiv = document.querySelector('#error');
 
         if(!name.trim()) {
             errorDiv.innerHTML = 'Name cannot be empty!';
+            return;
         }
+
+
+        const response = await fetch('/todo', {
+            method: 'POST',
+            body: JSON.stringify({ name, description }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        
+        dispatch({ type: 'ADD_WORKOUT' , payload: data.todo });
+
+        setName('');
+        setDescription('');
+        errorDiv.innerHTML = '';
     }
 
     return (
