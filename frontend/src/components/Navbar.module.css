@@ -25,3 +25,8 @@
     font-size: 1.1em;
     padding: 0 20px;
 }
+
+.navbar ul li a:hover {
+    color: crimson;
+    transition: 0.3s all ease-in-out;
+}
