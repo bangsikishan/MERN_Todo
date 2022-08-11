@@ -29,7 +29,7 @@ const TodoForm = () => {
         });
         const data = await response.json();
         
-        dispatch({ type: 'ADD_WORKOUT' , payload: data.todo });
+        dispatch({ type: 'ADD_TODO' , payload: data.todo });
 
         setName('');
         setDescription('');
