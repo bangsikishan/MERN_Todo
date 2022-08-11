@@ -14,7 +14,7 @@ const Home = () => {
             const response = await fetch('/todos');
             const todos = await response.json();
 
-            dispatch({ type: 'GET_WORKOUT', payload: todos.todos });
+            dispatch({ type: 'GET_TODO', payload: todos.todos });
         }
         
         getTodos();
