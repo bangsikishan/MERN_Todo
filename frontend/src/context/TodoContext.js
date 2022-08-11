@@ -4,14 +4,19 @@ export const TodoContext = createContext();
 
 const todoReducer = (state, action) => {
     switch(action.type) {
-        case 'GET_WORKOUT':
+        case 'GET_TODO':
             return {
                 todos: action.payload
             };
         
-        case 'ADD_WORKOUT':
+        case 'ADD_TODO':
             return {
                 todos: [action.payload, ...state.todos]
+            };
+
+        case 'DELETE_TODO':
+            return {
+                todos: state.todos.filter(todo => todo._id !== action.payload._id)
             };
     
         default:
@@ -24,7 +29,6 @@ const TodoContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(todoReducer, {
         todos: null
     });
-    console.log(state);
 
     return (
         <TodoContext.Provider value={{...state, dispatch}}>
