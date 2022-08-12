@@ -3,7 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 
-const router = require('./routes/todoRoute');
+const todoRouter = require('./routes/todoRoute');
+const userRouter = require('./routes/userRoute');
 
 
 // INSTANTIATE AN EXPRESS APP
@@ -14,7 +15,8 @@ app.use(express.json());
 
 
 // USE IMPORTED ROUTES
-app.use(router);
+app.use(todoRouter);
+app.use(userRouter);
 
 
 // CONNECT TO THE DATABASE AND THEN LISTEN ON THE SPECIFIED PORT
