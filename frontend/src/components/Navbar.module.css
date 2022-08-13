@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     font-family: 'Poppins', sans-serif;
     background: white;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.08);
@@ -9,6 +9,7 @@
 
 .navbar h2 {
     font-size: 2em;
+    margin-left: 20%;
 }
 
 .navbar a {
@@ -19,14 +20,24 @@
 .navbar ul {
     display: flex;
     list-style-type: none;
+    margin-right: 20%;
 }
 
 .navbar ul li {
     font-size: 1.1em;
     padding: 0 20px;
+    align-self: center;
 }
 
 .navbar ul li a:hover {
     color: crimson;
     transition: 0.3s all ease-in-out;
+}
+
+.navbar .logout {
+    border: 2px solid crimson;
+    border-radius: 4px;
+    padding: 5px 20px;
+    color: crimson;
+    cursor: pointer;
 }
