@@ -16,7 +16,8 @@ const signup = async (req, res) => {
 
     try {
         // FUNCTION TO VALIDATE USER EMAIL & PASSWORD
-        const hashedPassword = await userAuth.validateUserData(email, password);
+        userAuth.validateUserData(email, password);
+        const hashedPassword = await userAuth.checkDuplicateAndHash(email, password);
 
         const user = await userModel.create({ email, password: hashedPassword });
         
@@ -30,9 +31,33 @@ const signup = async (req, res) => {
 }
 
 // FUNCTION TO LOGIN
-const login = (req, res) => {
+const login = async (req, res) => {
     const { email, password } = req.body;
-    res.json({ email, password });
+    
+    try {
+        // FUNCTION TO VALIDATE USER EMAIL & PASSWORD
+        userAuth.validateUserData(email, password);
+
+        const user = await userModel.findOne({ email });
+
+        if(!user) {
+            throw new Error('Email doesn\'t exist!');
+        }
+
+        // IF PASSWORD MATCH, CREATE AND SEND TOKEN TO THE CLIENT
+        const isValid = await userAuth.verifyPassword(password, user.password);
+        if(isValid) {
+            const token = createToken(user._id);
+            res.json({ email, token });
+        }
+        else {
+            throw new Error('Incorrect Password!');
+        }
+    }
+    catch(err) {
+        const error = userErrorHandler.errorHandler(err);
+        res.json({ error });
+    }
 }
 
 
