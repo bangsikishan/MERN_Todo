@@ -4,6 +4,7 @@ const validator = require('validator');
 const userModel = require('../models/userModel');
 
 
+// FUNCTION TO VALIDATE USER EMAIL & PASSWORD
 const validateUserData = function(email, password) {
     if(!validator.isEmail(email)) {
         throw new Error('Not a valid email!');
@@ -12,11 +13,10 @@ const validateUserData = function(email, password) {
     if(!validator.isStrongPassword(password)) {
         throw new Error('Password not strong enough!');
     }
-
-    return checkDuplicateAndHash(email, password);
 }
 
 
+// FUNCTION TO CHECK FOR DUPLICATE EMAIL & HASH PASSWORD
 const checkDuplicateAndHash = async (email, password) => {
     const userExists = await userModel.findOne({ email });
 
@@ -31,7 +31,16 @@ const checkDuplicateAndHash = async (email, password) => {
 }
 
 
+// FUNCTION TO VERIFY PLAIN PASSWORD WITH HASHED PASSWORD
+const verifyPassword = async (password, hashedPassword) => {
+    const match = await bcrypt.compare(password, hashedPassword);
+    return match;
+}
+
+
 // EXPORT
 module.exports = {
-    validateUserData
+    validateUserData,
+    checkDuplicateAndHash,
+    verifyPassword
 };
