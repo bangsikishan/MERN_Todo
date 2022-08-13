@@ -40,10 +40,10 @@ const Signup = () => {
 
             
             // HANDLE ERROR
-            if(data.error.includes('email')) {
+            if(data.error.toLowerCase().includes('email')) {
                 emailErrorDiv.innerHTML = data.error;
             }
-            if(data.error.includes('Password')) {
+            if(data.error.toLowerCase().includes('password')) {
                 passwordErrorDiv.innerHTML = data.error;
             }
         }
