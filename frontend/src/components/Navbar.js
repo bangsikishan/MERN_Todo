@@ -1,15 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
+import { TodoContext } from '../context/TodoContext';
 import { UserContext } from '../context/UserContext';
 
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
+    const { dispatch: todosDispatch } = useContext(TodoContext);
     const { user, dispatch } = useContext(UserContext);
 
     const logout = () => {
         localStorage.removeItem('user');
         dispatch({ type: 'LOGOUT'});
+        todosDispatch({ type: 'LOGOUT' });
     }
 
     return (
