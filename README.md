@@ -18,7 +18,7 @@ SECRET_KEY: <Your_SecretKey_Here>
 ***Note: You need to have a MongoDB cloud account and NodeJS installed on your computer.***
 
 
-Signup for MongoDB [here](https://https://www.mongodb.com/).
+Signup for MongoDB [here](https://www.mongodb.com/).
 
 Install NodeJS from [here](https://nodejs.org/en/).
 
