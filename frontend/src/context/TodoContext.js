@@ -18,6 +18,11 @@ const todoReducer = (state, action) => {
             return {
                 todos: state.todos.filter(todo => todo._id !== action.payload._id)
             };
+
+        case 'LOGOUT':
+            return {
+                todos: null
+            };
     
         default:
             return state;
