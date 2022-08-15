@@ -1,15 +1,20 @@
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { useContext } from 'react';
 import { TodoContext } from '../context/TodoContext';
+import { UserContext } from '../context/UserContext';
 
 import styles from './Todo.module.css';
 
 const Todo = ({ todo }) => {
     const { dispatch } = useContext(TodoContext);
+    const { user } = useContext(UserContext);
 
     const deleteTodo = async () => {
         const response = await fetch(`/${todo._id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         });
 
         const data = await response.json();
