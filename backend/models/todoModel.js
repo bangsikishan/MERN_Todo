@@ -12,6 +12,10 @@ const todoSchema = new Schema({
     },
     description: {
         type: String
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 }, { timestamps: true });
 
