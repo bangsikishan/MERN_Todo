@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { TodoContext } from '../context/TodoContext';
+import { UserContext } from '../context/UserContext';
 
 import styles from './TodoForm.module.css';
 
@@ -8,6 +9,7 @@ const TodoForm = () => {
     const [description, setDescription] = useState('');
 
     const { dispatch } = useContext(TodoContext);
+    const { user } = useContext(UserContext);
 
     const submitForm = async e => {
         e.preventDefault();
@@ -24,7 +26,8 @@ const TodoForm = () => {
             method: 'POST',
             body: JSON.stringify({ name, description }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         });
         const data = await response.json();
