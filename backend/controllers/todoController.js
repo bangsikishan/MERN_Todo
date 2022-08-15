@@ -7,7 +7,9 @@ const mongoose = require('mongoose');
 // CREATE METHODS TO PERFORM DIFFERENT ACTIONS
 const getTodos = async (req, res) => {
     try {
-        const todos = await todoModel.find({}).sort({ createdAt: -1 });
+        const user_id = req.user._id;
+        
+        const todos = await todoModel.find({ user_id }).sort({ createdAt: -1 });
         res.json({ todos });
     }
     catch(err) {
@@ -19,7 +21,8 @@ const createTodos = async (req, res) => {
     const { name, description } = req.body;
 
     try {
-        const todo = await todoModel.create((name && description) ? { name, description } : { name });
+        const user_id = req.user._id;
+        const todo = await todoModel.create((name && description) ? { name, description, user_id } : { name, user_id });
         res.json({ todo });
     }
     catch(err) {
