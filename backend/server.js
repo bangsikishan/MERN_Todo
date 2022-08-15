@@ -12,11 +12,12 @@ const app = express();
 
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 // USE IMPORTED ROUTES
-app.use(todoRouter);
 app.use(userRouter);
+app.use(todoRouter);
 
 
 // CONNECT TO THE DATABASE AND THEN LISTEN ON THE SPECIFIED PORT
